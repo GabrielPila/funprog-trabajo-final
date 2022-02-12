@@ -12,16 +12,17 @@ public class inventario{
     static double[] precios = {3.1, 10.2, 4.0, 5.6, 6.2};
 
     public static void main(String[] args) {
+
+        // Initializing the Inventory Stock (All start with 10000 units)
         LinkedList<Integer> inventario = new LinkedList<>();
         inventario.add(10000); // Arroz
         inventario.add(10000); // Pollo
         inventario.add(10000); // Leche
         inventario.add(10000); // Panes
         inventario.add(10000); // Huevo
-        System.out.println("\n\nINVENTARIO:\t"+inventario+"\n\n");
 
         boolean keepProgram = true;
-        while (keepProgram == true) {
+        while (keepProgram) {
             clearScreen();
             char choicePrincipal = showScreenPrincipal();
             System.out.println(choicePrincipal);
@@ -32,11 +33,10 @@ public class inventario{
     
     
                 boolean makePedido = true;
-                while (makePedido == true){
+                while (makePedido){
                     char choicePedido = showScreenPedido();
                     int idxProduct = getIdxProduct(choicePedido);
                     String product = productos[idxProduct];
-                    //String product = getProduct(choicePedido);
             
                     int cant = showScreenCantidad();
                     System.out.println(cant);
@@ -60,25 +60,34 @@ public class inventario{
     
                 double precioFinal = getPrecioFinal(items, cantidades);        
             }
+
             else if (choicePrincipal=='B') {
                 // Imprime inventario disponible
+                clearScreen();
+                String mensajeInv = "\n"
+                + "===========================================================\n"
+                + "================= Plataforma de Inventario ================\n"
+                + "===========================================================\n"
+                + "\n"
+                + "Su stock de productos es el siguiente:\n\n";
+                System.out.print(mensajeInv);
+                    
                 for (int i=0; i < productos.length;i++){
                     System.out.println(" - "+productos[i]+"\t"+inventario.get(i)+" und. disponibles");
                 }
             }
+            else if (choicePrincipal=='C'){
+                keepProgram=false;
+            }
     
-            System.out.print("Desea regresar al menu principal [Y/N]?");
-            Scanner sc = new Scanner(System.in);
-            char choiceReturn = sc.next().charAt(0);
-            if (choiceReturn=='N') keepProgram=false;
-
+            if (keepProgram){
+                System.out.print("\nDesea regresar al menu principal [Y/N]?:\t");
+                Scanner sc = new Scanner(System.in);
+                char choiceReturn = sc.next().charAt(0);
+                if (choiceReturn=='N') keepProgram=false;    
+            }
         }
 
-
-
-
-//        LinkedList<String> order = getOrder();
-//        System.out.println(order);
         
     }
 
@@ -113,7 +122,8 @@ public class inventario{
         + "\n"
         + "\tOpciones disponibles:\n"
         + "\tA) Registrar un pedido\t[A]\n"
-        + "\tB) Cerrar el modulo \t[B]\n"
+        + "\tB) Consultar inventario\t[B]\n"
+        + "\tC) Cerrar el modulo \t[C]\n"
         + "\nQue accion desea realizar?:\t";
         System.out.print(mensaje);
         Scanner sc = new Scanner(System.in);
@@ -166,19 +176,6 @@ public class inventario{
 
     }
 
-    private static LinkedList<String> getOrder(){
-        LinkedList<String> order = new LinkedList<>();
-
-
-        System.out.print("Ingrese la cantidad:\t");
-        Scanner sc = new Scanner(System.in);
-        int num = sc.nextInt();
-        sc.close();
-        System.out.println("Son "+num+" elementos");
-
-        return order;
-
-    }
 
     private static double getPrecioFinal(LinkedList<String> items,
                                         LinkedList<Integer> cantidades){
