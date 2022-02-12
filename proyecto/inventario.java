@@ -47,16 +47,13 @@ public class inventario{
                     cantidades.add(cant);
                     inventario.set(idxProduct, inventario.get(idxProduct) - cant);
     
-                    System.out.print("Desea realizar otro pedido [Y/N]?");
+                    System.out.print("Desea realizar otro pedido [Y/N]?:\t");
                     Scanner sc = new Scanner(System.in);
                     char choiceOther = sc.next().charAt(0);
                     if (choiceOther=='N') makePedido=false;
     
                 }
     
-                System.out.println("Orden lista!!\n");
-                System.out.println(cantidades);
-                System.out.println(items);
     
                 double precioFinal = getPrecioFinal(items, cantidades);        
             }
@@ -187,6 +184,7 @@ public class inventario{
         int cant = 0; 
         double IGV = 0.18;
 
+        clearScreen();
         String mensaje = "\n"
         + "===========================================================\n"
         + "================== Plataforma de Pedidos ==================\n"
