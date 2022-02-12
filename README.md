@@ -14,6 +14,12 @@ Este proyecto implementa un sistema de inventario para una tienda. Inicializa un
 - Cerrar el módulo:
     - Cierra el programa.
 
+__Instrucciones__
+- Es necesario contar con Java instalado.
+- Clonar el repositorio: `git clone git@github.com:GabrielPila/funprog-trabajo-final.git`
+- Ingresar al directorio del proyecto: `cd funprog-trabajo-final/proyecto`
+- Ejecutar el programa: `java inventario.java`
+
 __Software utilizado__
 - Java SDK
 - Visual Studio Code
